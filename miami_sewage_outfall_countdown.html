@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timers</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: url('https://raw.githubusercontent.com/KaiKai7/PuraView-Overview/main/pipe_on_reef.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff; /* Ensure text is readable on the background */
+        }
+        .title, .timer-container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            margin-bottom: 20px;
+            font-size: 2em; /* Larger font size for the main title */
+        }
+        .timer-container h1 {
+            margin-bottom: 20px;
+            font-size: 1.5em; /* Smaller font size for the other titles */
+        }
+        .timer-container p {
+            font-size: 2em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="title">
+    Miami Dade Florida Sewage Outfall Deadline is January 1 2025
+    <p style="font-size:14pt">The plan is for the Miami-Dade Water & Sewer Authority to stop dumping treated sewage offshore. This is done using a pipes that spew the treated sewage into the ocean. This practice has been going on for decades up and down Florida coast. And according to the Miami Dade Water & Sewage Authority, up to 150,000,000 gallons a day of treated waste water is released. And what are they going to do with it then ?, Deep Well Injection. That's right, inject it deep into the earth, where it will miraculously disappear.</p>
+</div>
+
+<div class="timer-container" id="countdown">
+    <h1>Countdown In Minutes To Full Injection Drilling</h1>
+    <p id="timer"></p>
+</div>
+
+<div class="timer-container" id="sewage-timer">
+    <h1>How Many More Gallons of Treated Sewage Left to Dump Offshore ?</h1>
+    <p id="sewage"></p>
+</div>
+
+<script>
+    function updateTimers() {
+        const now = new Date();
+        
+        // Countdown Timer
+        const targetDate2026 = new Date('January 1, 2026 00:00:00');
+        const diff2026 = targetDate2026 - now;
+        
+        if (diff2026 > 0) {
+            const minutes = Math.floor(diff2026 / 1000 / 60);
+            const seconds = Math.floor((diff2026 % (1000 * 60)) / 1000);
+            document.getElementById('timer').textContent = minutes + " minutes " + seconds + " seconds";
+        } else {
+            document.getElementById('timer').textContent = "The time has come!";
+        }
+        
+        // Sewage Timer
+        const targetDate2025 = new Date('January 1, 2025 00:00:00');
+        const diff2025 = targetDate2025 - now;
+
+        if (diff2025 > 0) {
+            const totalSeconds = diff2025 / 1000;
+            const sewageGallons = 150000000 * (totalSeconds / (24 * 60 * 60));
+            document.getElementById('sewage').textContent = sewageGallons.toLocaleString() + " gallons";
+        } else {
+            document.getElementById('sewage').textContent = "The time has come!";
+        }
+    }
+
+    updateTimers();
+    setInterval(updateTimers, 1000); // Update every second
+</script>
+
+</body>
+</html>
